@@ -8,14 +8,55 @@
 	<script type="text/javascript">
 		$( document ).ready(function() {
 		  console.log( "initializing calendar..." );
-		  // page is now ready, initialize the calendar...
+		  // page is now ready
 
+		  // initialize the calendar
+		  $('#calendar').fullCalendar({ });
+
+
+		  /* 
+		  // without using calendar object
 		  $('#calendar').fullCalendar({
 		    // options and callbacks here
 		    // weekends: false // will hide Saturdays and Sundays
 		    // defaultView: 'agendaWeek'
-		    // defaultView: 'listWeek'		   
-		  })		    
+		    // defaultView: 'listWeek'	
+
+		    // Handlers/callbacks - alert box
+		    // Triggered when the user clicks on a date or a time.
+			dayClick: function(date, jsEvent, view) {
+				console.log('clicked on ' + date.format());
+				console.log('coordinate x, y' + jsEvent.pageX + ', ' + jsEvent.pageY);
+				console.log('current view: ' + view.name);
+
+				// change background color
+				// $(this).css('background-color', 'red');
+			}	 	   
+		  });	
+		  */	  
+	
+			// a convenient utility for getting the calendar object.
+			// you can call methods on the calendar object directly.
+			var calendar = $('#calendar').fullCalendar('getCalendar');
+			// to display the objects like directory log
+			// console.dir(calendar);
+
+			// dayClick - Triggered when the user clicks on a date or a time.
+			calendar.on('dayClick', function(date, jsEvent, view) {
+				console.log('clicked on ' + date.format());
+				console.log('coordinate x, y' + jsEvent.pageX + ', ' + jsEvent.pageY);
+				console.log('current view: ' + view.name);	
+
+				// change background color
+				$(this).css('background-color', 'green');						  
+			});	
+
+			// This will call the next method and will force to the calendar to move to the next month/week/day.
+			// calendar.next();
+
+			// This will call the prev method and will force to the calendar to move to the previos month/week/day.			
+			// calendar.prev();
+
 		});		
 	</script>	
   </head>

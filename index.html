@@ -6,13 +6,26 @@
 	<script src='./lib/moment.min.js'></script>
 	<script src='./fullcalendar/fullcalendar.js'></script>  
 	<script type="text/javascript">
+
+		var calendar = undefined;
+
+		function initalizeCalendar() {
+			console.log("initalizing calendar...")
+		  $('#calendar').fullCalendar({ });	
+		  calendar = $('#calendar').fullCalendar('getCalendar');						
+		}
+
+		function setCalendarInstance() {
+
+		}
+
 		$( document ).ready(function() {
-		  console.log( "initializing calendar..." );
+		  //console.log( "initializing calendar..." );
 		  // page is now ready
 
 		  // initialize the calendar
-		  $('#calendar').fullCalendar({ });
-
+		  // $('#calendar').fullCalendar({ });
+		  initalizeCalendar();
 
 		  /* 
 		  // without using calendar object
@@ -37,7 +50,7 @@
 	
 			// a convenient utility for getting the calendar object.
 			// you can call methods on the calendar object directly.
-			var calendar = $('#calendar').fullCalendar('getCalendar');
+			//var calendar = $('#calendar').fullCalendar('getCalendar');
 			// to display the objects like directory log
 			// console.dir(calendar);
 
@@ -56,12 +69,24 @@
 
 			// This will call the prev method and will force to the calendar to move to the previos month/week/day.			
 			// calendar.prev();
+		});
 
-		});		
+
+			// This will call the next method and will force to the calendar to move to the next month/week/day.
+			function goNext() {
+				console.log("next month/week/day...");
+				calendar.next(); 
+			}	
+
+
 	</script>	
   </head>
 
   <body>
+  		<h1 style="text-align: center;">Schedule Meetings</h1>
+
+  		<!-- <button onclick="goNext()">Next</button> --> 
+  		
 		<div id='calendar'></div> 	
   </body>
 </html>

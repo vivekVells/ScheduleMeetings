@@ -78,6 +78,33 @@
 				calendar.next(); 
 			}	
 
+			// month view
+			function monthView() {
+				console.log("Month view selected...");
+				calendar.changeView('month');
+			}
+
+			// agenda week view
+			function agendaView() {
+				console.log("Agenda week view selected...");
+				calendar.changeView('agendaWeek');
+			}
+
+			// list week view
+			function listView() {
+				console.log("List week view selected...");
+				calendar.changeView('listWeek');
+			}
+
+
+			// to toggle different view
+			function toggleView(select) {
+				var selectedID = select.options[select.selectedIndex].getAttribute("viewId");				
+				console.log("toggle different views...");
+				if(selectedID == 1) { calendar.changeView('month'); }
+				else if(selectedID == 2) { calendar.changeView('agendaWeek'); }
+				else if(selectedID == 3) { calendar.changeView('listWeek'); }
+			}
 
 	</script>	
   </head>
@@ -86,7 +113,17 @@
   		<h1 style="text-align: center;">Schedule Meetings</h1>
 
   		<!-- <button onclick="goNext()">Next</button> --> 
-  		
+		<select onchange=toggleView(this)>
+		  <option viewId=1>Month View</option>
+		  <option viewId=2>Agenda View</option>
+		  <option viewId=3>List View</option>
+		</select>
+
+		<button onclick="monthView()">Month View</button>
+		<button onclick="agendaView()">Agenda View</button>
+		<button onclick="listView()">List View</button>
+
+		<br><br>
 		<div id='calendar'></div> 	
   </body>
 </html>
